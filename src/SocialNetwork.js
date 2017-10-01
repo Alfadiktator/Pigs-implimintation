@@ -2,7 +2,32 @@ class SocialNetwork {
     constructor(dataBase) {
         this.dataBase = dataBase;
     }
-
+    /**
+     * Adds new user.
+     * Throws exception if user with such ID already exist or invalid input
+     */
+    AddUser(id, user){
+        if(!user.hasOwnProperty("name") || !user.hasOwnProperty("friends")){
+            throw new Error("Invalid user");
+        }
+        if(this.dataBase.hasOwnProperty(id)){
+            throw "Already existing ID";
+        }
+        this.dataBase[id] = user;
+    }
+    /**
+     * Adds friend connection between two users.
+     * Throws exception if there is no user with such ID
+     */
+    AddFriendConneceion(id1, id2){
+        if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
+            throw new Error("No such users.");
+        }
+        if(this.dataBase[id1].friends.indexOf(id2) === -1){
+            this.dataBase[id1].friends.push(id2);
+            this.dataBase[id2].friends.push(id1);
+        }
+    }
      /**
      * Finds shortest path of adjacent friends.
      * Returns array of ids that represent path or empty array,
@@ -105,5 +130,5 @@ if (res.length === 4)
 else
     console.log("Failed.");
 
-
+sn.AddFriendConneceion(1, 5);
 module.exports = SocialNetwork;
