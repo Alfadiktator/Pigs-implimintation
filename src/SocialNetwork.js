@@ -54,7 +54,7 @@ var dataBase = {
      * Throws exception if there is no user with such ID
      * !!! if A friend of B,then B friend of A
      */
-    AddFriendConneceion(id1, id2){
+    AddFriendConnection(id1, id2){
  
     }
      /**
