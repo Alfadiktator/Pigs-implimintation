@@ -34,6 +34,7 @@ class SocialNetwork {
      * if there no path.
      * Throws exception if there no users with such ids
      * @returns {Array}
+     * Bfs algorithm on graph
      */
     findMinPathOfFriends(id1, id2) {
         if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2))
