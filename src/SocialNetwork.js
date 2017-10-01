@@ -75,8 +75,35 @@ var dataBase = {
     }
 }
 
+
 let sn = new SocialNetwork(dataBase);
-console.log(sn.findMinPathOfFriends(1,6));
+try {
+    var wasException = false;
+    console.log("Should throw exception for unexisting id:");
+    sn.findMinPathOfFriends(1, 128);
+} 
+catch(e) {
+    wasException = true;
+} 
+finally {
+    if (wasException)
+        console.log("Passed");
+    else 
+        console.log("Failed.");
+}
+
+console.log("Should return [] as users aren't connected:");
+var res = sn.findMinPathOfFriends(1,6);
+if (res.length === 0)
+    console.log("Passed.");
+else
+    console.log("Failed.");
+console.log("Should return path of length 4:");
+res = sn.findMinPathOfFriends(1,5);
+if (res.length === 4)
+    console.log("Passed");
+else
+    console.log("Failed.");
 
 
 module.exports = SocialNetwork;
