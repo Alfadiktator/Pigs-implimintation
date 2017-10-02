@@ -19,7 +19,7 @@ class SocialNetwork {
      * Adds friend connection between two users.
      * Throws exception if there is no user with such ID
      */
-    addFriendConneceion(id1, id2){
+    addFriendConnection(id1, id2){
         if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
             throw new Error("No such users.");
         }
@@ -74,62 +74,62 @@ class SocialNetwork {
     }
 }
 
-var dataBase = {
-    1 : {
-        name: "Simon Karasik",
-        friends: [2, 3],
-    }, 
-    2 : {
-        name: "Ivan Shpuntov",
-        friends: [1, 3, 4],
-    },
-    3: {
-        name: "Alexandr Kovalchuk",
-        friends: [1, 2, 4],
-    },
-    4: {
-        name: "Oleg Bobrov",
-        friends: [2, 3, 5],
-    },
-    5: {
-        name: "Unity, C#",
-        friends: [4],
-    },
-    6: {
-        name: "Lonely men",
-        friends: [],
-    }
-}
+// var dataBase = {
+//     1 : {
+//         name: "Simon Karasik",
+//         friends: [2, 3],
+//     }, 
+//     2 : {
+//         name: "Ivan Shpuntov",
+//         friends: [1, 3, 4],
+//     },
+//     3: {
+//         name: "Alexandr Kovalchuk",
+//         friends: [1, 2, 4],
+//     },
+//     4: {
+//         name: "Oleg Bobrov",
+//         friends: [2, 3, 5],
+//     },
+//     5: {
+//         name: "Unity, C#",
+//         friends: [4],
+//     },
+//     6: {
+//         name: "Lonely men",
+//         friends: [],
+//     }
+// }
 
 
-let sn = new SocialNetwork(dataBase);
-try {
-    var wasException = false;
-    console.log("Should throw exception for unexisting id:");
-    sn.findMinPathOfFriends(1, 128);
-} 
-catch(e) {
-    wasException = true;
-} 
-finally {
-    if (wasException)
-        console.log("Passed");
-    else 
-        console.log("Failed.");
-}
+// let sn = new SocialNetwork(dataBase);
+// try {
+//     var wasException = false;
+//     console.log("Should throw exception for unexisting id:");
+//     sn.findMinPathOfFriends(1, 128);
+// } 
+// catch(e) {
+//     wasException = true;
+// } 
+// finally {
+//     if (wasException)
+//         console.log("Passed");
+//     else 
+//         console.log("Failed.");
+// }
 
-console.log("Should return [] as users aren't connected:");
-var res = sn.findMinPathOfFriends(1,6);
-if (res.length === 0)
-    console.log("Passed.");
-else
-    console.log("Failed.");
-console.log("Should return path of length 4:");
-res = sn.findMinPathOfFriends(1,5);
-if (res.length === 4)
-    console.log("Passed");
-else
-    console.log("Failed.");
+// console.log("Should return [] as users aren't connected:");
+// var res = sn.findMinPathOfFriends(1,6);
+// if (res.length === 0)
+//     console.log("Passed.");
+// else
+//     console.log("Failed.");
+// console.log("Should return path of length 4:");
+// res = sn.findMinPathOfFriends(1,5);
+// if (res.length === 4)
+//     console.log("Passed");
+// else
+//     console.log("Failed.");
 
-sn.AddFriendConneceion(1, 5);
-module.exports = SocialNetwork;
+// sn.AddFriendConneceion(1, 5);
+ module.exports = SocialNetwork;
