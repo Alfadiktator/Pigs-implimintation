@@ -46,7 +46,7 @@ var dataBase = {
      * Adds new user.
      * Throws exception if user with such ID already exist or invalid input
      */
-    AddUser(id, user){
+    addUser(id, user){
 
     }
     /**
@@ -54,7 +54,7 @@ var dataBase = {
      * Throws exception if there is no user with such ID
      * !!! if A friend of B,then B friend of A
      */
-    AddFriendConnection(id1, id2){
+    addFriendConnection(id1, id2){
  
     }
      /**
