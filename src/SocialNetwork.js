@@ -6,7 +6,7 @@ class SocialNetwork {
      * Adds new user.
      * Throws exception if user with such ID already exist or invalid input
      */
-    AddUser(id, user){
+    addUser(id, user){
         if(!user.hasOwnProperty("name") || !user.hasOwnProperty("friends")){
             throw new Error("Invalid user");
         }
@@ -19,7 +19,7 @@ class SocialNetwork {
      * Adds friend connection between two users.
      * Throws exception if there is no user with such ID
      */
-    AddFriendConneceion(id1, id2){
+    addFriendConneceion(id1, id2){
         if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
             throw new Error("No such users.");
         }
