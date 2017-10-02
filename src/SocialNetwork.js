@@ -32,7 +32,7 @@ class SocialNetwork {
         if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
             throw new Error("No such users.");
         }
-        if(!this.areFriends(id1. id2)){
+        if(!this.areFriends(id1, id2)){
             this.dataBase[id1].friends.push(id2);
             this.dataBase[id2].friends.push(id1);
         }
