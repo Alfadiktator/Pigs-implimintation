@@ -2,7 +2,7 @@ const SocialNetwork = require('../implementation/SocialNetwork');
 
 /** Good luck! :) **/
 
-var dataBase = {
+const dataBase = {
     1 : {
         name: "Simon Karasik",
         friends: [2, 3],
@@ -37,7 +37,7 @@ describe('SocialNetwork', () => {
         });
 		it('must assigns exemplar\'s database to parametrs\'s database', () => {
 			const q = new SocialNetwork(dataBase);
-			expect(q.dataBase).to.equal(dataBase);
+			expect(JSON.stringify(q.dataBase)).to.equal(JSON.stringify((dataBase)));
 		});
     });
 
@@ -68,12 +68,12 @@ describe('SocialNetwork', () => {
                 friends: [],
             };
             social.addUser(99,newuser);
-            expect(social[99].name).to.equal("Marshall Mathers");
-            expect(social[99].friends.length).to.equal(0);
+            expect(social.getUser(99).name).to.equal("Marshall Mathers");
+            expect(social.getUser(99).friends.length).to.equal(0);
         });
     });
 
-    describe('#addFriendConnection', () => {
+    describe('#makeFriends', () => {
         let social;
         
         beforeEach(() => {
@@ -81,16 +81,16 @@ describe('SocialNetwork', () => {
         });
 
         it('throws an exception if id doesn\'t exist', () => {
-			expect(() => social.addFriendConnection(1,999)).to.throw(Error);
+			expect(() => social.makeFriends(1,999)).to.throw(Error);
         });
 
         it('do nothing if connection already exist', () => {
-			expect(() => social.addFriendConnection(1,2)).not.to.throw(Error);
+			expect(() => social.makeFriends(1,2)).not.to.throw(Error);
         });
         it('valid added connection', () => {
-            social.addFriendConnection(1,4);
-            expect(social['1'].friends.indexOf(4)!==-1).to.be.ok();
-            expect(social['4'].friends.indexOf(1)!==-1).to.be.ok();
+            social.makeFriends(1,4);
+            expect(social.getUser(1).friends.indexOf(4)!==-1).to.be.ok;
+            expect(social.getUser(4).friends.indexOf(1)!==-1).to.be.ok;
         });
     });
 
@@ -105,9 +105,9 @@ describe('SocialNetwork', () => {
             expect(() => social.findMinPathOfFriends(1,999)).to.throw(Error);
         });
         it('find min path of friends', () => {
-            expect(() => social.findMinPathOfFriends(1,5)).to.equal([ 1, 2, 4, 5 ]);
-            expect(() => social.findMinPathOfFriends(1,5)).to.equal([ 1, 2, 4 ]);
-            expect(() => social.findMinPathOfFriends(1,5)).to.equal([ 1, 2 ]);
+            expect(social.findMinPathOfFriends(1,5).join()).to.equal([ 1, 2, 4, 5 ].join());
+            expect(social.findMinPathOfFriends(1,4).join()).to.equal([ 1, 2, 4 ].join());
+            expect(social.findMinPathOfFriends(1,2).join()).to.equal([ 1, 2 ].join());
         });
         it('return [] if there no path of friends', () => {
             const newuser={
@@ -115,7 +115,7 @@ describe('SocialNetwork', () => {
                 friends: [],
             };
             social.addUser(12,newuser);
-            expect(() => social.findMinPathOfFriends(1,12)).to.equal([]);           
+            expect(social.findMinPathOfFriends(1,12).join()).to.equal([].join());           
         });
     });
 });

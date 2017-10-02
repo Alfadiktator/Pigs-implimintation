@@ -4,7 +4,7 @@
     "suitesWeights": {
       "#constructor": 10,
       "#addUser": 10,
-      "#addFriendConnection": 10,
+      "#makeFriends": 10,
       "#findMinPathOfFriends": 70
     }
   }

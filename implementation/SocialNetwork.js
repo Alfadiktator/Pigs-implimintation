@@ -1,6 +1,9 @@
 class SocialNetwork {
     constructor(dataBase) {
-        this.dataBase = dataBase;
+        if(typeof(dataBase) === 'undefined'){
+            throw new Error();
+        }
+        this.dataBase = JSON.parse(JSON.stringify(dataBase));
     }
     /**
      * Adds new user.
@@ -11,7 +14,7 @@ class SocialNetwork {
             throw new Error("Invalid user");
         }
         if(this.dataBase.hasOwnProperty(id)){
-            throw "Already existing ID";
+            throw new Error("Already existing ID");
         }
         this.dataBase[id] = user;
     }
@@ -19,7 +22,7 @@ class SocialNetwork {
      * Adds friend connection between two users.
      * Throws exception if there is no user with such ID
      */
-    addFriendConnection(id1, id2){
+    makeFriends(id1, id2){
         if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
             throw new Error("No such users.");
         }
@@ -27,6 +30,18 @@ class SocialNetwork {
             this.dataBase[id1].friends.push(id2);
             this.dataBase[id2].friends.push(id1);
         }
+    }
+
+    /**
+     * Returns user by id
+     * Returns null if user doesn't exist
+     * @return {Object} 
+     */
+    getUser(id){
+        if(!id in this.dataBase){
+            return null;
+        }
+        return this.dataBase[id];
     }
      /**
      * Finds shortest path of adjacent friends.
