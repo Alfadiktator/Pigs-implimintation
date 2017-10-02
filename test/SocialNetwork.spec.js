@@ -105,9 +105,9 @@ describe('SocialNetwork', () => {
             expect(() => social.findMinPathOfFriends(1,999)).to.throw(Error);
         });
         it('find min path of friends', () => {
-            expect(social.findMinPathOfFriends(1,5).join()).to.equal([ 1, 2, 4, 5 ].join());
-            expect(social.findMinPathOfFriends(1,4).join()).to.equal([ 1, 2, 4 ].join());
-            expect(social.findMinPathOfFriends(1,2).join()).to.equal([ 1, 2 ].join());
+            expect(social.findMinPathOfFriends(1,5)).to.deep.equal([ 1, 2, 4, 5 ]);
+            expect(social.findMinPathOfFriends(1,4)).to.deep.equal([ 1, 2, 4 ]);
+            expect(social.findMinPathOfFriends(1,2)).to.deep.equal([ 1, 2 ]);
         });
         it('return [] if there no path of friends', () => {
             const newuser={
@@ -115,7 +115,7 @@ describe('SocialNetwork', () => {
                 friends: [],
             };
             social.addUser(12,newuser);
-            expect(social.findMinPathOfFriends(1,12).join()).to.equal([].join());           
+            expect(social.findMinPathOfFriends(1,12)).to.deep.equal([]);           
         });
     });
 });
