@@ -15,6 +15,15 @@ class SocialNetwork {
         }
         this.dataBase[id] = user;
     }
+
+    /**
+     * Checks if given people are friends
+     * @return {Boolean}
+     */
+    areFriends(id1, id2){
+        return this.dataBase[id1].friends.indexOf(id2) !== -1;
+    }
+
     /**
      * Adds friend connection between two users.
      * Throws exception if there is no user with such ID
@@ -23,7 +32,7 @@ class SocialNetwork {
         if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
             throw new Error("No such users.");
         }
-        if(this.dataBase[id1].friends.indexOf(id2) === -1){
+        if(!this.areFriends(id1. id2)){
             this.dataBase[id1].friends.push(id2);
             this.dataBase[id2].friends.push(id1);
         }
