@@ -1,0 +1,11 @@
+{
+  "SocialNetwork": {
+    "weight": 100,
+    "suitesWeights": {
+      "#constructor": 10,
+      "#addUser": 10,
+      "#addFriendConnection": 10,
+      "#findMinPathOfFriends": 70
+    }
+  }
+}
