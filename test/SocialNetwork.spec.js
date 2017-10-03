@@ -118,4 +118,18 @@ describe('SocialNetwork', () => {
             expect(social.findMinPathOfFriends(1,12)).to.deep.equal([]);           
         });
     });
+    describe('#getUser', () => {
+        let social;
+        
+        beforeEach(() => {
+             social =new SocialNetwork(dataBase);
+        });
+        it('should return null if there is no such id in database', () => {
+            expect(() => social.dataBase.getUser(666)).to.equal(null);
+        });
+		it('must return valid user', () => {
+            expect(social.getUser(5).name).to.equal("Unity C#-ович");
+            expect(social.getUser(5).friends.length).to.equal(1);
+		});
+    });
 });
