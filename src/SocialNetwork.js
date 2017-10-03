@@ -30,7 +30,7 @@ var dataBase = {
     }
 }
 
- example of singal user format
+ example of single user format
  
     [user_id]: {
         name: [user_name],
