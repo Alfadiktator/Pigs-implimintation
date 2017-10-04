@@ -4,8 +4,9 @@
     "suitesWeights": {
       "#constructor": 10,
       "#addUser": 10,
+      "#getUser": 10,
       "#makeFriends": 10,
-      "#findMinPathOfFriends": 70
+      "#findMinPathOfFriends": 60
     }
   }
 }
