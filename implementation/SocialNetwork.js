@@ -52,8 +52,9 @@ class SocialNetwork {
      * Bfs algorithm on graph
      */
     findMinPathOfFriends(id1, id2) {
-        if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2))
+        if (!this.dataBase.hasOwnProperty(id1) || !this.dataBase.hasOwnProperty(id2)){
             throw new Error("No such users.");
+        }
         
         let queue = [id1];
         let history = {

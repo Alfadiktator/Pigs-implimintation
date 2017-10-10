@@ -96,7 +96,16 @@ describe('SocialNetwork', () => {
 
     describe('#findMinPathOfFriends', () => {
         let social;
-        
+
+        function validPath(arr){
+            for(let i = 0; i < arr.length - 1; i++){
+                if(dataBase[arr[i]].friends.indexOf(arr[i+1]) === -1){
+                    return false;
+                }
+            }
+            return true;
+        }
+
         beforeEach(() => {
              social =new SocialNetwork(dataBase);
         });
@@ -105,9 +114,17 @@ describe('SocialNetwork', () => {
             expect(() => social.findMinPathOfFriends(1,999)).to.throw(Error);
         });
         it('find min path of friends', () => {
-            expect(social.findMinPathOfFriends(1,5)).to.deep.equal([ 1, 2, 4, 5 ]);
-            expect(social.findMinPathOfFriends(1,4)).to.deep.equal([ 1, 2, 4 ]);
-            expect(social.findMinPathOfFriends(1,2)).to.deep.equal([ 1, 2 ]);
+            let path = social.findMinPathOfFriends(1,5);
+            expect(path.length).to.be.equal(4);            
+            expect(validPath(path)).to.be.equal(true);
+
+            path = social.findMinPathOfFriends(1,4);
+            expect(path.length).to.be.equal(3);            
+            expect(validPath(path)).to.be.equal(true);
+
+            path = social.findMinPathOfFriends(1,2);
+            expect(path.length).to.be.equal(2);            
+            expect(validPath(path)).to.be.equal(true);
         });
         it('return [] if there no path of friends', () => {
             const newuser={
@@ -125,7 +142,7 @@ describe('SocialNetwork', () => {
              social =new SocialNetwork(dataBase);
         });
         it('should return null if there is no such id in database', () => {
-            expect(() => social.dataBase.getUser(666)).to.equal(null);
+            expect(() => social.dataBase.getUser(666)).to.throw();
         });
 		it('must return valid user', () => {
             expect(social.getUser(5).name).to.equal("Unity C#-ович");
